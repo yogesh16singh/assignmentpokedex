@@ -5,19 +5,19 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { PokemonCard } from "./pokemon-card";
 
-interface PokemonGridProps{
-    pokemonList: any
+interface PokemonGridProps {
+  pokemonList: any
 }
 
 export function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState("");
-  
+  // const [data, setData] = useState({})
 
   console.log(pokemonList);
-  
+
   const searchFilter = (pokemonList: any) => {
     return pokemonList.filter(
-        (pokemon:any)=> pokemon.name.toLowerCase().includes(searchText.toLowerCase())
+      (pokemon: any) => pokemon.name.toLowerCase().includes(searchText.toLowerCase())
     )
   }
 
@@ -41,12 +41,14 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
         <h3 className="text-3xl pt-12 pb-6 text-center">Pokemon Collection</h3>
       </div>
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
-            {filteredPokemonList.map((pokemon: any)=>{
-                return (
-                    <PokemonCard name={pokemon.name} key={pokemon.id}/>
-                )
-            })}
-        
+        {filteredPokemonList.map((pokemon: any) => {
+          let data;
+
+          return (
+            <PokemonCard name={pokemon.name} url={pokemon.url} />
+          )
+        })}
+
       </div>
     </>
   );
